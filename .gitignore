@@ -1,0 +1,7 @@
+# Ignore virtual environment
+adacl/
+__pycache__/
+*.pyc
+
+# VSCode settings
+.vscode/
