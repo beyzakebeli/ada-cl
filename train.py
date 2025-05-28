@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import pandas as pd
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
@@ -46,7 +47,7 @@ def train_with_adaptive_difficulty(model, df_train, test_loader, tokenizer, devi
         print(train_subset['cleaned_truthfulness'].value_counts())
 
         train_loader = DataLoader(MultimodalDataset(train_subset, max_images=max_images),
-                                  batch_size=batch_size, shuffle=True)
+                                  batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True)
 
         epoch_losses = []
         optimizer.zero_grad()
@@ -93,17 +94,66 @@ def train_with_adaptive_difficulty(model, df_train, test_loader, tokenizer, devi
         print(f"\nEvaluating after Epoch {epoch}...")
         evaluate_model(model, test_loader, save_path=result_path)
 
+# def train_step1_model(model, df_step1, test_loader, tokenizer, device, optimizer, scheduler,
+#                       epochs=5, batch_size=4, max_images=5):
+#     model.to(device)
+#     scaler = GradScaler()
+#     model.train()
+
+#     dataset = MultimodalDataset(df_step1, max_images=max_images)
+#     loader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True)
+
+#     for epoch in range(epochs):
+#         epoch_losses = []
+#         for text, evidence, image, labels in loader:
+#             text = {k: v.to(device) for k, v in text.items()}
+#             evidence = {k: v.to(device) for k, v in evidence.items()}
+#             image = image.to(device)
+#             labels = labels.to(device)
+
+#             with autocast():
+#                 logits, _ = model(text=text, evidence=evidence, image=image)
+                
+#                 loss = F.cross_entropy(logits, labels)
+
+#             scaler.scale(loss).backward()
+#             scaler.step(optimizer)
+#             scaler.update()
+#             optimizer.zero_grad()
+
+#             epoch_losses.append(loss.item())
+
+#         print(f"[Step 1] Epoch {epoch+1} | Loss: {sum(epoch_losses)/len(epoch_losses):.4f}")
+
+import torch
+import torch.nn.functional as F
+from torch.cuda.amp import autocast, GradScaler
+from torch.utils.data import DataLoader
+from dataset import MultimodalDataset  # Assuming you have this
+from collections import Counter
+
 def train_step1_model(model, df_step1, test_loader, tokenizer, device, optimizer, scheduler,
                       epochs=5, batch_size=4, max_images=5):
     model.to(device)
     scaler = GradScaler()
     model.train()
 
+    # === Compute class weights ===
+    label_counts = Counter(df_step1['binary_label'].tolist())  # 0 = NEI, 1 = Refuted/Supported
+    total = sum(label_counts.values())
+    class_weights = [total / label_counts[cls] for cls in range(len(label_counts))]
+    class_weights = torch.tensor(class_weights, dtype=torch.float).to(device)
+
+    # Create weighted loss function
+    loss_fn = torch.nn.CrossEntropyLoss(weight=class_weights)
+
+    # Prepare data loader
     dataset = MultimodalDataset(df_step1, max_images=max_images)
-    loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    loader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True)
 
     for epoch in range(epochs):
         epoch_losses = []
+        model.train()
         for text, evidence, image, labels in loader:
             text = {k: v.to(device) for k, v in text.items()}
             evidence = {k: v.to(device) for k, v in evidence.items()}
@@ -112,7 +162,7 @@ def train_step1_model(model, df_step1, test_loader, tokenizer, device, optimizer
 
             with autocast():
                 logits, _ = model(text=text, evidence=evidence, image=image)
-                loss = F.cross_entropy(logits, labels)
+                loss = loss_fn(logits, labels)
 
             scaler.scale(loss).backward()
             scaler.step(optimizer)
@@ -122,9 +172,6 @@ def train_step1_model(model, df_step1, test_loader, tokenizer, device, optimizer
             epoch_losses.append(loss.item())
 
         print(f"[Step 1] Epoch {epoch+1} | Loss: {sum(epoch_losses)/len(epoch_losses):.4f}")
-
-
-# STEP 3: Step 2 Training with Curriculum (Refuted vs Supported)
 
 def train_step2_with_curriculum(model, df_step2, test_loader, tokenizer, device, optimizer, scheduler,
                                 epochs=10, batch_size=4, max_images=5,

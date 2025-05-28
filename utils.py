@@ -2,10 +2,13 @@ import pandas as pd
 import numpy as np
 import torch.nn.functional as F
 import torch
+from dataset import MultimodalDataset
+from torch.utils.data import DataLoader
+
 
 def merge_evidence(df):
     return df.groupby("Claim", as_index=False).agg({
-        "Evidence": lambda x: " [SEP] ".join(set(x.dropna())) if x.dropna().any() else "No evidence provided",
+        "Evidence": lambda x: " [SEP] ".join(set(x.dropna())) if x.dropna().any() else "",
         "image_path": "first",  # Keep first image list
         "cleaned_truthfulness": "first"  # Keep first label
     })
@@ -18,6 +21,23 @@ def prepare_two_step_datasets(df):
     df_step2['binary_label'] = df_step2['cleaned_truthfulness'].apply(lambda x: 0 if x == 0 else 1)  # 0 = Refuted, 1 = Supported
 
     return df_step1, df_step2
+
+def initialize_difficulty_scores(df, model, tokenizer, device):
+    model.eval()
+    scores = []
+    dataset = MultimodalDataset(df)
+    loader = DataLoader(dataset, batch_size=4, shuffle=False)
+    with torch.no_grad():
+        for i, batch in enumerate(loader):
+            text, evidence, images, labels = batch
+            text = {k: v.to(device) for k, v in text.items()}
+            evidence = {k: v.to(device) for k, v in evidence.items()}
+            images, labels = images.to(device), labels.to(device)
+            logits, _ = model(text=text, evidence=evidence, image=images)
+            losses = F.cross_entropy(logits, labels, reduction='none')
+            scores.extend(losses.cpu().tolist())
+    df['difficulty_score'] = scores
+    return df
 
 def update_difficulty_scores(df, new_losses, alpha=0.1):
     df['difficulty_score'] = (1 - alpha) * df['difficulty_score'] + alpha * np.array(new_losses)
@@ -38,4 +58,5 @@ def get_easy_examples_per_class(df, pacing_ratio=0.2, max_per_class=500):
         n_samples = min(n_samples, max_per_class)
         easy_samples.append(class_subset.head(n_samples))
     return pd.concat(easy_samples)
+
 

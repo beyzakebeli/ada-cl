@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, classification_report
 
-def evaluate_model(model, test_loader, save_path='./results/adaptive_CL_with_modality_contribution_NEI.txt'):
+def evaluate_model(model, test_loader, save_path='./results/cross-modal-attention.txt'):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # model.to(device)  # make sure model is on the cuda device
     model.eval() # evaluation mode
@@ -79,3 +79,5 @@ def two_step_inference(model_step1, model_step2, dataloader, device):
                     step2_logits, _ = model_step2(text=single_text, evidence=single_evidence, image=single_image)
                     step2_pred = step2_logits.argmax(dim=1).item()
                     all_preds.append(step2_pred)  # 0 or 1
+
+    return all_preds

@@ -24,8 +24,8 @@ class MultimodalDataset(Dataset):
         for path in image_paths:
             try:
                 with Image.open(path) as img:
-                    img = image_transform(img.convert("RGB"))
-                    # img = clip_transform(img.convert("RGB"))
+                    # img = image_transform(img.convert("RGB"))
+                    img = clip_transform(img.convert("RGB"))
                     images.append(img)
             except:
                 continue
@@ -40,19 +40,19 @@ class MultimodalDataset(Dataset):
         label = torch.tensor(row['cleaned_truthfulness'], dtype=torch.long)
         return text, evidence, images, label
 
-image_transform = transforms.Compose([
-    transforms.Resize((224, 224)),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-])
-
-# clip_transform = Compose([
-#     Resize(224, interpolation=Image.BICUBIC),
-#     CenterCrop(224),
-#     ToTensor(),
-#     Normalize(mean=[0.48145466, 0.4578275, 0.40821073],
-#               std=[0.26862954, 0.26130258, 0.27577711])
+# image_transform = transforms.Compose([
+#     transforms.Resize((224, 224)),
+#     transforms.ToTensor(),
+#     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 # ])
+
+clip_transform = Compose([
+    Resize(224, interpolation=Image.BICUBIC),
+    CenterCrop(224),
+    ToTensor(),
+    Normalize(mean=[0.48145466, 0.4578275, 0.40821073],
+              std=[0.26862954, 0.26130258, 0.27577711])
+])
 
 def load_images(image_paths):
     """Load all images for a given row and return a tensor list."""
@@ -61,8 +61,8 @@ def load_images(image_paths):
         try:
             with Image.open(path) as image: # faster image loading
                 image = image.convert("RGB")
-                image = image_transform(image) # appy the transformation
-                # image = clip_transform(image)
+                # image = image_transform(image) # appy the transformation
+                image = clip_transform(image)
                 images.append(image)
         except Exception as e:
             print(f"Error loading {path}: {e}")  

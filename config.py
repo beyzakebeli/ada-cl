@@ -2,8 +2,8 @@ import torch
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-BATCH_SIZE = 4
-MAX_IMAGES = 5
+BATCH_SIZE = 1
+MAX_IMAGES = 3
 EPOCHS = 5
 
 DATA_PATH = "~/multimodal-misinformation/data/"
