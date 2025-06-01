@@ -22,18 +22,24 @@ def prepare_two_step_datasets(df):
 
     return df_step1, df_step2
 
-def initialize_difficulty_scores(df, model, tokenizer, device):
+# tokenizer is changed with processor for CLIP-only scenario
+def initialize_difficulty_scores(df, model, processor, device):
     model.eval()
     scores = []
-    dataset = MultimodalDataset(df)
+    # dataset = MultimodalDataset(df)
+    dataset = MultimodalDataset(df, processor=processor) # for CLIP
     loader = DataLoader(dataset, batch_size=4, shuffle=False)
     with torch.no_grad():
         for i, batch in enumerate(loader):
-            text, evidence, images, labels = batch
-            text = {k: v.to(device) for k, v in text.items()}
-            evidence = {k: v.to(device) for k, v in evidence.items()}
-            images, labels = images.to(device), labels.to(device)
-            logits, _ = model(text=text, evidence=evidence, image=images)
+            # text, evidence, images, labels = batch
+            # text = {k: v.to(device) for k, v in text.items()}
+            # evidence = {k: v.to(device) for k, v in evidence.items()}
+            # images, labels = images.to(device), labels.to(device)
+            # logits, _ = model(text=text, evidence=evidence, image=images)
+            inputs, labels = batch
+            inputs = {k: v.to(device) for k, v in inputs.items()}
+            labels = labels.to(device)
+            logits, _ = model(**inputs)
             losses = F.cross_entropy(logits, labels, reduction='none')
             scores.extend(losses.cpu().tolist())
     df['difficulty_score'] = scores

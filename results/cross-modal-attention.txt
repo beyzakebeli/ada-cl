@@ -1,0 +1,496 @@
+**Test Set Performance**
+Accuracy: 0.4393
+Precision: 0.4166
+Recall: 0.4393
+F1-score: 0.2756
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.44      1.00      0.61       735
+           1       0.79      0.02      0.04       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.44      1698
+   macro avg       0.41      0.34      0.22      1698
+weighted avg       0.42      0.44      0.28      1698
+**Test Set Performance**
+Accuracy: 0.4753
+Precision: 0.3704
+Recall: 0.4753
+F1-score: 0.3516
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.46      0.98      0.63       735
+           1       0.58      0.18      0.27       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.48      1698
+   macro avg       0.35      0.39      0.30      1698
+weighted avg       0.37      0.48      0.35      1698
+**Test Set Performance**
+Accuracy: 0.4658
+Precision: 0.3687
+Recall: 0.4658
+F1-score: 0.3319
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.46      0.99      0.63       735
+           1       0.59      0.13      0.21       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.47      1698
+   macro avg       0.35      0.37      0.28      1698
+weighted avg       0.37      0.47      0.33      1698
+**Test Set Performance**
+Accuracy: 0.4971
+Precision: 0.3727
+Recall: 0.4971
+F1-score: 0.3833
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.49      0.98      0.65       735
+           1       0.56      0.26      0.35       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.50      1698
+   macro avg       0.35      0.41      0.33      1698
+weighted avg       0.37      0.50      0.38      1698
+**Test Set Performance**
+Accuracy: 0.4900
+Precision: 0.3832
+Recall: 0.4900
+F1-score: 0.3709
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.48      0.99      0.64       735
+           1       0.61      0.22      0.32       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.49      1698
+   macro avg       0.36      0.40      0.32      1698
+weighted avg       0.38      0.49      0.37      1698
+**Test Set Performance**
+Accuracy: 0.4947
+Precision: 0.3761
+Recall: 0.4947
+F1-score: 0.3811
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.48      0.97      0.65       735
+           1       0.58      0.25      0.35       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.49      1698
+   macro avg       0.35      0.41      0.33      1698
+weighted avg       0.38      0.49      0.38      1698
+**Test Set Performance**
+Accuracy: 0.4829
+Precision: 0.3813
+Recall: 0.4829
+F1-score: 0.3591
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.47      0.99      0.64       735
+           1       0.61      0.19      0.29       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.48      1698
+   macro avg       0.36      0.39      0.31      1698
+weighted avg       0.38      0.48      0.36      1698
+**Test Set Performance**
+Accuracy: 0.4817
+Precision: 0.3763
+Recall: 0.4817
+F1-score: 0.3588
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.47      0.99      0.64       735
+           1       0.60      0.19      0.29       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.48      1698
+   macro avg       0.36      0.39      0.31      1698
+weighted avg       0.38      0.48      0.36      1698
+**Test Set Performance**
+Accuracy: 0.4876
+Precision: 0.3749
+Recall: 0.4876
+F1-score: 0.3674
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.48      0.99      0.64       735
+           1       0.58      0.21      0.31       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.49      1698
+   macro avg       0.35      0.40      0.32      1698
+weighted avg       0.37      0.49      0.37      1698
+**Test Set Performance**
+Accuracy: 0.4882
+Precision: 0.4231
+Recall: 0.4882
+F1-score: 0.3719
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.48      0.98      0.64       735
+           1       0.61      0.22      0.32       492
+           2       0.14      0.00      0.00       471
+
+    accuracy                           0.49      1698
+   macro avg       0.41      0.40      0.32      1698
+weighted avg       0.42      0.49      0.37      1698
+**Test Set Performance**
+Accuracy: 0.4835
+Precision: 0.5124
+Recall: 0.4835
+F1-score: 0.3743
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.48      0.99      0.64       735
+           1       0.68      0.12      0.20       492
+           2       0.39      0.08      0.13       471
+
+    accuracy                           0.48      1698
+   macro avg       0.52      0.39      0.33      1698
+weighted avg       0.51      0.48      0.37      1698
+**Test Set Performance**
+Accuracy: 0.4806
+Precision: 0.5052
+Recall: 0.4806
+F1-score: 0.3739
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.48      0.98      0.64       735
+           1       0.67      0.12      0.20       492
+           2       0.38      0.08      0.14       471
+
+    accuracy                           0.48      1698
+   macro avg       0.51      0.39      0.33      1698
+weighted avg       0.51      0.48      0.37      1698
+**Test Set Performance**
+Accuracy: 0.4994
+Precision: 0.5407
+Recall: 0.4994
+F1-score: 0.4163
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.50      0.95      0.66       735
+           1       0.72      0.12      0.20       492
+           2       0.41      0.20      0.27       471
+
+    accuracy                           0.50      1698
+   macro avg       0.55      0.42      0.37      1698
+weighted avg       0.54      0.50      0.42      1698
+**Test Set Performance**
+Accuracy: 0.2962
+Precision: 0.4584
+Recall: 0.2962
+F1-score: 0.1589
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.61      0.03      0.06       735
+           1       0.29      0.97      0.44       492
+           2       0.40      0.00      0.01       471
+
+    accuracy                           0.30      1698
+   macro avg       0.43      0.34      0.17      1698
+weighted avg       0.46      0.30      0.16      1698
+**Test Set Performance**
+Accuracy: 0.4741
+Precision: 0.4574
+Recall: 0.4741
+F1-score: 0.3595
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.48      0.98      0.64       735
+           1       0.54      0.11      0.19       492
+           2       0.34      0.06      0.10       471
+
+    accuracy                           0.47      1698
+   macro avg       0.45      0.38      0.31      1698
+weighted avg       0.46      0.47      0.36      1698
+**Test Set Performance**
+Accuracy: 0.4741
+Precision: 0.4574
+Recall: 0.4741
+F1-score: 0.3595
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.48      0.98      0.64       735
+           1       0.54      0.11      0.19       492
+           2       0.34      0.06      0.10       471
+
+    accuracy                           0.47      1698
+   macro avg       0.45      0.38      0.31      1698
+weighted avg       0.46      0.47      0.36      1698
+**Test Set Performance**
+Accuracy: 0.4894
+Precision: 0.3371
+Recall: 0.4894
+F1-score: 0.3784
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.50      0.95      0.66       735
+           1       0.00      0.00      0.00       492
+           2       0.43      0.28      0.34       471
+
+    accuracy                           0.49      1698
+   macro avg       0.31      0.41      0.33      1698
+weighted avg       0.34      0.49      0.38      1698
+**Test Set Performance**
+Accuracy: 0.4329
+Precision: 0.1874
+Recall: 0.4329
+F1-score: 0.2615
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.43      1.00      0.60       735
+           1       0.00      0.00      0.00       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.43      1698
+   macro avg       0.14      0.33      0.20      1698
+weighted avg       0.19      0.43      0.26      1698
+**Test Set Performance**
+Accuracy: 0.4329
+Precision: 0.1874
+Recall: 0.4329
+F1-score: 0.2615
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.43      1.00      0.60       735
+           1       0.00      0.00      0.00       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.43      1698
+   macro avg       0.14      0.33      0.20      1698
+weighted avg       0.19      0.43      0.26      1698
+**Test Set Performance**
+Accuracy: 0.4329
+Precision: 0.1874
+Recall: 0.4329
+F1-score: 0.2615
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.43      1.00      0.60       735
+           1       0.00      0.00      0.00       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.43      1698
+   macro avg       0.14      0.33      0.20      1698
+weighted avg       0.19      0.43      0.26      1698
+**Test Set Performance**
+Accuracy: 0.4582
+Precision: 0.3813
+Recall: 0.4582
+F1-score: 0.3164
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.45      0.99      0.62       735
+           1       0.64      0.10      0.17       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.46      1698
+   macro avg       0.36      0.36      0.26      1698
+weighted avg       0.38      0.46      0.32      1698
+**Test Set Performance**
+Accuracy: 0.4329
+Precision: 0.1874
+Recall: 0.4329
+F1-score: 0.2615
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.43      1.00      0.60       735
+           1       0.00      0.00      0.00       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.43      1698
+   macro avg       0.14      0.33      0.20      1698
+weighted avg       0.19      0.43      0.26      1698
+**Test Set Performance**
+Accuracy: 0.4329
+Precision: 0.1874
+Recall: 0.4329
+F1-score: 0.2615
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.43      1.00      0.60       735
+           1       0.00      0.00      0.00       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.43      1698
+   macro avg       0.14      0.33      0.20      1698
+weighted avg       0.19      0.43      0.26      1698
+**Test Set Performance**
+Accuracy: 0.4329
+Precision: 0.1874
+Recall: 0.4329
+F1-score: 0.2615
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.43      1.00      0.60       735
+           1       0.00      0.00      0.00       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.43      1698
+   macro avg       0.14      0.33      0.20      1698
+weighted avg       0.19      0.43      0.26      1698
+**Test Set Performance**
+Accuracy: 0.4594
+Precision: 0.3124
+Recall: 0.4594
+F1-score: 0.3356
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.47      0.96      0.63       735
+           1       0.38      0.15      0.21       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.46      1698
+   macro avg       0.28      0.37      0.28      1698
+weighted avg       0.31      0.46      0.34      1698
+**Test Set Performance**
+Accuracy: 0.4594
+Precision: 0.3157
+Recall: 0.4594
+F1-score: 0.3380
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.47      0.95      0.63       735
+           1       0.39      0.16      0.23       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.46      1698
+   macro avg       0.29      0.37      0.29      1698
+weighted avg       0.32      0.46      0.34      1698
+**Test Set Performance**
+Accuracy: 0.4576
+Precision: 0.3195
+Recall: 0.4576
+F1-score: 0.3228
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.46      0.98      0.63       735
+           1       0.41      0.11      0.18       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.46      1698
+   macro avg       0.29      0.36      0.27      1698
+weighted avg       0.32      0.46      0.32      1698
+**Test Set Performance**
+Accuracy: 0.4900
+Precision: 0.4588
+Recall: 0.4900
+F1-score: 0.4450
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.53      0.83      0.65       735
+           1       0.45      0.26      0.33       492
+           2       0.36      0.19      0.25       471
+
+    accuracy                           0.49      1698
+   macro avg       0.45      0.43      0.41      1698
+weighted avg       0.46      0.49      0.45      1698
+**Test Set Performance**
+Accuracy: 0.4900
+Precision: 0.3478
+Recall: 0.4900
+F1-score: 0.3809
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.50      0.95      0.65       735
+           1       0.46      0.27      0.34       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.49      1698
+   macro avg       0.32      0.41      0.33      1698
+weighted avg       0.35      0.49      0.38      1698
+**Test Set Performance**
+Accuracy: 0.4329
+Precision: 0.1874
+Recall: 0.4329
+F1-score: 0.2615
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.43      1.00      0.60       735
+           1       0.00      0.00      0.00       492
+           2       0.00      0.00      0.00       471
+
+    accuracy                           0.43      1698
+   macro avg       0.14      0.33      0.20      1698
+weighted avg       0.19      0.43      0.26      1698
+**Test Set Performance**
+Accuracy: 0.4199
+Precision: 0.2762
+Recall: 0.4199
+F1-score: 0.2595
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.43      0.97      0.59       735
+           1       0.25      0.00      0.00       492
+           2       0.07      0.00      0.01       471
+
+    accuracy                           0.42      1698
+   macro avg       0.25      0.32      0.20      1698
+weighted avg       0.28      0.42      0.26      1698

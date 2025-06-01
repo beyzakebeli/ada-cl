@@ -2,34 +2,83 @@ import torch
 import numpy as np
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, classification_report
 
-def evaluate_model(model, test_loader, save_path='./results/cross-modal-attention.txt'):
+# def evaluate_model(model, test_loader, save_path='./results/cross-modal-attention.txt'):
+#     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#     model.to(device)  # make sure model is on the cuda device
+#     model.eval() # evaluation mode
+
+#     all_preds, all_labels = [], []
+
+#     with torch.no_grad():
+#         for batch_idx, batch in enumerate(test_loader):
+#             text, evidence, image, labels = batch
+
+#             # Move to GPU
+#             text = {key: val.to(device) for key, val in text.items()}
+#             evidence = {key: val.to(device) for key, val in evidence.items()}
+#             image = image.to(device)
+#             labels = labels.to(device)
+
+#             # Forward pass (model prediction)
+#             logits, _ = model(text=text, evidence=evidence, image=image)
+#             preds = torch.argmax(logits, dim=1)
+
+#             all_preds.extend(preds.cpu().numpy())  # Store predictions
+#             all_labels.extend(labels.cpu().numpy())  # Store labels
+
+#     all_preds = np.array(all_preds)
+#     all_labels = np.array(all_labels)
+
+#     # Metrics computation
+#     acc = accuracy_score(all_labels, all_preds)
+#     precision, recall, f1, _ = precision_recall_fscore_support(all_labels, all_preds, average="weighted")
+#     report = classification_report(all_labels, all_preds)
+
+#     # Print results
+#     print("\n **Test Set Performance**")
+#     print(f"Accuracy: {acc:.4f}")
+#     print(f"Precision: {precision:.4f}")
+#     print(f"Recall: {recall:.4f}")
+#     print(f"F1-score: {f1:.4f}")
+#     print("\n Classification Report:\n", classification_report(all_labels, all_preds))
+
+#     # Saving the results
+#     with open(save_path, "a", encoding="utf-8") as f:
+#         f.write("**Test Set Performance**\n")
+#         f.write(f"Accuracy: {acc:.4f}\n")
+#         f.write(f"Precision: {precision:.4f}\n")
+#         f.write(f"Recall: {recall:.4f}\n")
+#         f.write(f"F1-score: {f1:.4f}\n\n")
+#         f.write("Classification Report:\n")
+#         f.write(report)
+
+#     return acc, precision, recall, f1 
+
+# === CLIP-only model evaluation ===
+def evaluate_model(model, test_loader, save_path='./results/cross-modal-attention-clip.txt'):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # model.to(device)  # make sure model is on the cuda device
-    model.eval() # evaluation mode
+    model.to(device)
+    model.eval()
 
     all_preds, all_labels = [], []
 
     with torch.no_grad():
-        for batch_idx, batch in enumerate(test_loader):
-            text, evidence, image, labels = batch
-
+        for inputs, labels in test_loader:
             # Move to GPU
-            text = {key: val.to(device) for key, val in text.items()}
-            evidence = {key: val.to(device) for key, val in evidence.items()}
-            image = image.to(device)
+            inputs = {key: val.to(device) for key, val in inputs.items()}
             labels = labels.to(device)
 
-            # Forward pass (model prediction)
-            logits, _ = model(text=text, evidence=evidence, image=image)
+            # Forward pass
+            logits, _ = model(**inputs) # changed to **inputs for CLIP
             preds = torch.argmax(logits, dim=1)
 
-            all_preds.extend(preds.cpu().numpy())  # Store predictions
-            all_labels.extend(labels.cpu().numpy())  # Store labels
+            all_preds.extend(preds.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
 
     all_preds = np.array(all_preds)
     all_labels = np.array(all_labels)
 
-    # Metrics computation
+    # Compute metrics
     acc = accuracy_score(all_labels, all_preds)
     precision, recall, f1, _ = precision_recall_fscore_support(all_labels, all_preds, average="weighted")
     report = classification_report(all_labels, all_preds)
@@ -40,9 +89,9 @@ def evaluate_model(model, test_loader, save_path='./results/cross-modal-attentio
     print(f"Precision: {precision:.4f}")
     print(f"Recall: {recall:.4f}")
     print(f"F1-score: {f1:.4f}")
-    print("\n Classification Report:\n", classification_report(all_labels, all_preds))
+    print("\n Classification Report:\n", report)
 
-    # Saving the results
+    # Save results
     with open(save_path, "a", encoding="utf-8") as f:
         f.write("**Test Set Performance**\n")
         f.write(f"Accuracy: {acc:.4f}\n")
@@ -52,7 +101,7 @@ def evaluate_model(model, test_loader, save_path='./results/cross-modal-attentio
         f.write("Classification Report:\n")
         f.write(report)
 
-    return acc, precision, recall, f1 
+    return acc, precision, recall, f1
 
 def two_step_inference(model_step1, model_step2, dataloader, device):
     model_step1.eval()
